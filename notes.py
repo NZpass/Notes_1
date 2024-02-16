@@ -17,7 +17,7 @@ def create_note():
     new_note["date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     notes.append(new_note)
     save_notes(notes)
-    print("Заметка успешно создана!")
+    print("Заметка создана!")
 
 
 # Функция для загрузки списка заметок
@@ -52,9 +52,9 @@ def edit_note(note_id):
             note["body"] = input("Введите новый текст заметки: ")
             note["date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             save_notes(notes)
-            print("Заметка успешно отредактирована!")
+            print("Заметка отредактирована!")
             return
-    print("Заметка с таким id не найдена.")
+    print("Заметка с таким ID не найдена.")
 
 
 # Функция для удаления заметки
@@ -62,7 +62,7 @@ def delete_note(note_id):
     notes = load_notes()
     notes = [note for note in notes if note["id"] != note_id]
     save_notes(notes)
-    print("Заметка успешно удалена!")
+    print("Заметка удалена!")
 
 
 # Программа
@@ -81,10 +81,10 @@ while True:
     elif choice == "2":
         list_notes()
     elif choice == "3":
-        note_id = int(input("Введите id заметки для редактирования: "))
+        note_id = int(input("Введите ID заметки для редактирования: "))
         edit_note(note_id)
     elif choice == "4":
-        note_id = int(input("Введите id заметки для удаления: "))
+        note_id = int(input("Введите ID заметки для удаления: "))
         delete_note(note_id)
     elif choice == "5":
         break
