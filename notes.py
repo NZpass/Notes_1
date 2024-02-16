@@ -6,6 +6,7 @@ import json
 import os
 from datetime import datetime
 
+
 # Функция для создания новой заметки
 def create_note():
     notes = load_notes()
@@ -18,6 +19,7 @@ def create_note():
     save_notes(notes)
     print("Заметка успешно создана!")
 
+
 # Функция для загрузки списка заметок
 def load_notes():
     if os.path.exists("notes.json"):
@@ -27,16 +29,19 @@ def load_notes():
     else:
         return []
 
+
 # Функция для сохранения списка заметок
 def save_notes(notes):
     with open("notes.json", "w") as file:
         json.dump(notes, file, indent=4)
+
 
 # Функция для вывода списка всех заметок
 def list_notes():
     notes = load_notes()
     for note in notes:
         print(f"{note['id']}. {note['title']} - {note['date']}")
+
 
 # Функция для редактирования заметки
 def edit_note(note_id):
@@ -50,3 +55,11 @@ def edit_note(note_id):
             print("Заметка успешно отредактирована!")
             return
     print("Заметка с таким id не найдена.")
+
+
+# Функция для удаления заметки
+def delete_note(note_id):
+    notes = load_notes()
+    notes = [note for note in notes if note["id"] != note_id]
+    save_notes(notes)
+    print("Заметка успешно удалена!")
