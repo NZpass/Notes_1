@@ -26,3 +26,27 @@ def load_notes():
         return notes
     else:
         return []
+
+# Функция для сохранения списка заметок
+def save_notes(notes):
+    with open("notes.json", "w") as file:
+        json.dump(notes, file, indent=4)
+
+# Функция для вывода списка всех заметок
+def list_notes():
+    notes = load_notes()
+    for note in notes:
+        print(f"{note['id']}. {note['title']} - {note['date']}")
+
+# Функция для редактирования заметки
+def edit_note(note_id):
+    notes = load_notes()
+    for note in notes:
+        if note["id"] == note_id:
+            note["title"] = input("Введите новый заголовок заметки: ")
+            note["body"] = input("Введите новый текст заметки: ")
+            note["date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            save_notes(notes)
+            print("Заметка успешно отредактирована!")
+            return
+    print("Заметка с таким id не найдена.")
