@@ -6,6 +6,7 @@ import json
 import os
 from datetime import datetime
 
+
 # Функция для создания новой заметки
 def create_note():
     notes = load_notes()
@@ -17,3 +18,13 @@ def create_note():
     notes.append(new_note)
     save_notes(notes)
     print("Заметка успешно создана!")
+
+
+# Функция для загрузки списка заметок
+def load_notes():
+    if os.path.exists("notes.json"):
+        with open("notes.json", "r") as file:
+            notes = json.load(file)
+        return notes
+    else:
+        return []
